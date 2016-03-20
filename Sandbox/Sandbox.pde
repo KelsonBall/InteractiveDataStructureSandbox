@@ -1,27 +1,6 @@
-public class VisualRoot extends Element implements IWrapper{
-    private Element _child;    
-  
-    public void ClearChild(){    
-        this._child = null;    
-    }
-  
-    public void AssignChild(Element child){
-        this._child = child;
-    }
-  
-    public Element GetChild(){
-        return this._child;
-    }
-  
-  
-    public void Draw(){    
-        if (this._child != null){
-            this._child.Draw();
-        }
-    }
-}
-
+public class VisualRoot extends AbstractWrapper{ }
 VisualRoot App;
+
 int pWidth, pHeight;
 
 void setup(){
@@ -31,13 +10,9 @@ void setup(){
     
     App = new VisualRoot();
     
-    surface.setResizable(true);
+    surface.setResizable(true);    
     
-    
-    background(200);
-  
-    
-  
+    background(200);        
     //noLoop();
 }
 

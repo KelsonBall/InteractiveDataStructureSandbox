@@ -11,6 +11,30 @@ interface IWrapper{
     public Element GetChild();
 }
 
+public abstract class AbstractWrapper extends Element implements IWrapper{
+    
+    protected Element _child;    
+  
+    public void ClearChild(){    
+        this._child = null;    
+    }
+  
+    public void AssignChild(Element child){
+        this._child = child;
+    }
+  
+    public Element GetChild(){
+        return this._child;
+    }
+  
+  
+    public void Draw(){
+        if (this._child != null){
+            this._child.Draw();
+        }
+    }
+}
+
 interface IDrawable{  
     public void Draw();
   
