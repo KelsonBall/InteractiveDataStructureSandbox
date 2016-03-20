@@ -75,24 +75,3 @@ public class RowItem extends Element implements IWrapper{
     }
   
 }
-
-public class VisualRoot extends Element implements IWrapper{
-    private Element _child;    
-  
-    public void ClearChild(){    
-        this._child = null;    
-    }
-  
-    public void AssignChild(Element child){
-        this._child = child;
-    }
-  
-    public Element GetChild(){
-        return this._child;
-    }
-  
-  
-    public void Draw(){    
-        this._child.Draw();
-    }
-}

@@ -20,6 +20,21 @@ public abstract class Element implements IDrawable{
             this.absoluteSize.XOffset = (int)(this.parent.GetAbsoluteSize().XOffset * elementSize.XScale) + elementSize.XOffset;
             this.absoluteSize.YOffset = (int)(this.parent.GetAbsoluteSize().YOffset * elementSize.YScale) + elementSize.YOffset;
         }
+        
+        // Propegate changes down visual tree
+        if (this instanceof IWrapper){
+            Element child = ((IWrapper)this).GetChild();
+            if (child != null){
+                child.SetSize(child.GetSize());
+            }
+        } else if (this instanceof IContainer){
+            List<Element> children = ((IContainer)this).GetChildren();
+            for (Element child : children){
+                child.SetSize(child.GetSize());
+            }
+        }
+        
+        
     }
 
     public final void SetSize(double xScale, int xOffset, double yScale, int yOffset){
@@ -42,6 +57,19 @@ public abstract class Element implements IDrawable{
         } else {
             this.absolutePosition.XOffset = (int)(this.parent.GetAbsolutePosition().XOffset * elementOffset.XScale) + elementOffset.XOffset;
             this.absolutePosition.YOffset = (int)(this.parent.GetAbsolutePosition().YOffset * elementOffset.YScale) + elementOffset.YOffset;
+        }
+        
+        // Propegate changes down visual tree
+        if (this instanceof IWrapper){
+            Element child = ((IWrapper)this).GetChild();
+            if (child != null){
+                child.SetPosition(child.GetPosition());
+            }
+        } else if (this instanceof IContainer){
+            List<Element> children = ((IContainer)this).GetChildren();
+            for (Element child : children){
+                child.SetPosition(child.GetPosition());
+            }
         }
     }
 
