@@ -1,6 +1,12 @@
+public static class Elements{
+    public static Stack<UUID> TranslationId = new Stack<UUID>();
+}
+
 // Basic type that encapuslates all items in the visual tree
 public abstract class Element implements IDrawable{
-    private UIDimensions size, absoluteSize, position, absolutePosition;   
+    private UIDimensions size, absoluteSize, position, absolutePosition, margin;
+    private UUID _translationId;
+    protected StyleTemplate style; 
     protected Element parent;
 
     public color Background, Foreground; 
@@ -8,6 +14,7 @@ public abstract class Element implements IDrawable{
     public Element(){
         this.absoluteSize = new UIDimensions(0, 0, 0, 0); 
         this.absolutePosition = new UIDimensions(0, 0, 0, 0);
+        this.margin = new UIDimensions(0, 0, 0, 0);
     }
 
     public final void SetSize(UIDimensions elementSize){
@@ -100,14 +107,37 @@ public abstract class Element implements IDrawable{
     }
 
     public void Draw(){
+        this.PushTranslation();
+            this.style.Push();                
+                rect(0, 0, this.absolutePosition.XOffset, this.absolutePosition.YOffset);
+            this.style.Pop();
+        this.PopTranslation();
+        
+    }
+    
+    public void PushTranslation(){
+        if (this.parent == null){
+            return;
+        }
+            
+        this._translationId = UUID.randomUUID();
+        Elements.TranslationId.push(this._translationId);
         pushMatrix();
-            float xTranslation = (float)(this.parent.GetAbsoluteSize().XOffset * this.GetPosition().XScale) + this.GetPosition().XOffset;
-            float yTranslation = (float)(this.parent.GetAbsoluteSize().YOffset * this.GetPosition().YScale) + this.GetPosition().YOffset;
-            translate(xTranslation, yTranslation);           
-            float xWidth = (float)(this.parent.GetAbsoluteSize().XOffset * this.GetSize().XScale) + this.GetSize().XOffset;
-            float yWidth = (float)(this.parent.GetAbsoluteSize().YOffset * this.GetSize().YScale) + this.GetSize().YOffset;
-            fill(this.Background);
-            rect(0, 0, xWidth, yWidth);
-        popMatrix();
+        float xTranslation = (float)(this.parent.GetAbsoluteSize().XOffset * this.GetPosition().XScale) + this.GetPosition().XOffset;
+        float yTranslation = (float)(this.parent.GetAbsoluteSize().YOffset * this.GetPosition().YScale) + this.GetPosition().YOffset;
+        translate(xTranslation, yTranslation);
+    }
+    
+    public void PopTranslation() throws IllegalStateException{
+        if (this.parent == null){
+            return;
+        }
+        
+        if (this._translationId == Elements.TranslationId.peek()){
+            Elements.TranslationId.pop();
+            popMatrix();
+        } else {
+            throw new IllegalStateException("Attempted to pop a translation that was not at the top of the stack.");
+        }
     }
 }

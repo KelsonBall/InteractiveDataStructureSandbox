@@ -8,7 +8,7 @@ void setup(){
     pWidth = width;
     pHeight = height;
     
-    App = new VisualRoot();
+    App = new VisualRoot();    
     
     surface.setResizable(true);    
     
