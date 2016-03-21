@@ -65,27 +65,13 @@ public class ListContainer extends Element implements IContainer{
     }
 }
 
-public class ListItem extends Element implements IWrapper{
+public class ListItem extends AbstractWrapper{
   
     private Element _child;
   
     public ListItem(Element content){
         this.AssignChild(content);
-    }
-  
-    public void ClearChild(){
-        this._child.parent = null;
-        this._child = null;    
-    }
-  
-    public void AssignChild(Element child){
-        child.parent = this;
-        this._child = child;
-    }
-  
-    public Element GetChild(){
-        return this._child;
-    }
+    }  
     
     public void SetWidth(double scale, int offset) throws IllegalStateException{
         if (((ListContainer)this.parent).Orientation == ListOrientation.VERTICAL){

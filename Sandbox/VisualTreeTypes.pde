@@ -15,11 +15,13 @@ public abstract class AbstractWrapper extends Element implements IWrapper{
     
     protected Element _child;    
   
-    public void ClearChild(){    
+    public void ClearChild(){
+        this._child.parent = null;
         this._child = null;    
     }
   
     public void AssignChild(Element child){
+        child.parent = this;
         this._child = child;
     }
   
