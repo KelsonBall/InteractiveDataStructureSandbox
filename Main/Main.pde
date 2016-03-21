@@ -1,19 +1,18 @@
-public class VisualRoot extends AbstractWrapper{ }
-VisualRoot App;
+
 
 int pWidth, pHeight;
 
 void setup(){
     size(800,600);
     pWidth = width;
-    pHeight = height;
-    
-    App = new VisualRoot();    
+    pHeight = height;        
     
     surface.setResizable(true);    
     
-    background(200);        
-    //noLoop();
+    background(200); 
+    
+    // Build the visual tree.
+    Initialize();    
 }
 
 void draw(){
