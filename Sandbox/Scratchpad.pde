@@ -1,7 +1,10 @@
-public class SetToPinkAction implements IAction<Button>
+public class SetFillToRandomColorAction implements IAction<Element>
 {
-    public void Invoke(Button sender)
+    @Override
+    public void Invoke(Element sender)
     {
-        sender.Background = #FF6BF7; 
+        if (sender.Style.Enabled){
+            sender.Style.Fill = color(random(255), random(255), random(255), random(255));
+        }
     }
 }
