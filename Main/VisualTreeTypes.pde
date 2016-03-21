@@ -38,6 +38,10 @@ public abstract class AbstractWrapper extends Element implements IWrapper{
 }
 
 interface IDrawable{  
+    // Pushes translations and styles before calling Draw, pops translations and styles after Draw call.
+    public void Display();
+    
+    // Draws to the canvas. Assumes all styles and translations have been applied.
     public void Draw();
   
     public void SetSize(UIDimensions elementSize);
@@ -58,8 +62,8 @@ interface IClickable{
     public int HitTest(int mousePosX, int mousePosY);
     public void InvokeClickTrigger();
   
-    public void SetClickTrigger(IAction trigger);
-    public IAction GetClickTrigger();
+    public void SetClickTrigger(IAction<Element> trigger);
+    public IAction<Element> GetClickTrigger();
 }
 
 public class UIDimensions{   
@@ -124,6 +128,14 @@ public class Vector4{
 // Defines an interface for wrapped methods.
 public interface IAction<SenderType>{
     public void Invoke(SenderType sender); 
+}
+
+public class ActionAdapater implements IAction<Element>
+{
+    @Override
+    public void Invoke(Element sender)
+    {        
+    }
 }
 
 public static class Styles{
@@ -243,6 +255,5 @@ public class StyleTemplate{
             throw new IllegalStateException("Attempted to pop a style that was not at the top of the stack.");
         }
         
-    }
-    
+    }    
 }

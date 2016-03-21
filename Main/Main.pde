@@ -1,5 +1,3 @@
-
-
 int pWidth, pHeight;
 
 void setup(){
@@ -25,15 +23,27 @@ void draw(){
     App.Display();
 }
 
-
-void mousePressed()
-{
-   //element topClickedItem;
-   //int topClickedItemZIndex;
-   // for each element in the visual tree
+Element elementUnderPoint(int x, int y){
+    Element topItemUnderPoint = null;
+    
+    int top = 0;
+    int index;
+    List<Element> allElements = App.AllElements();
+    for (Element element : allElements){        
+        if ((index = element.HitTest(x, y)) > top){
+            top = index;
+            topItemUnderPoint = element;
+        }
+    }
        // if element is IClickable
            // if (element.HitTest(mouseX,mouseY) > topClickedItemZIndex)
                //topClickedItem = element
+    return topItemUnderPoint;
+}
+
+void mousePressed()
+{
+   
    //topClickedItem.Invoke();  
 }
 
