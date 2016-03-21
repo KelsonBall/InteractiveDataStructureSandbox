@@ -61,10 +61,10 @@ interface IClickable{
 }
 
 public class UIDimensions{   
-    public int XOffset = 0; // Element.width/2
-    public double XScale = 0; // 0.5
-    public int YOffset = 0; //Element.height/2
-    public double YScale = 0; // 0.5
+    private int XOffset = 0; // Element.width/2
+    private double XScale = 0; // 0.5
+    private int YOffset = 0; //Element.height/2
+    private double YScale = 0; // 0.5
   
     public UIDimensions(double xScale, int xOffset, double yScale, int yOffset)
     {
@@ -73,6 +73,50 @@ public class UIDimensions{
         this.YOffset = yOffset;
         this.YScale = yScale;
     }
+    
+    public int GetXOffset(){
+        return this.XOffset;
+    }
+    
+    public double GetXScale(){
+        return this.XScale;
+    }
+    
+    public int GetYOffset(){
+        return this.YOffset;
+    }
+    
+    public double GetYScale(){
+        return this.YScale;
+    }
+}
+
+public class Vector4{
+   private int Left, Top, Right, Bottom;
+   
+   public Vector4(int left, int top, int right, int bottom){
+      this.Left = left;
+      this.Top = top;
+      this.Right = right;
+      this.Bottom = bottom;
+   }
+   
+   public int GetLeft(){
+       return this.Left;
+   }
+   
+   public int GetTop(){
+       return this.Top;
+   }
+   
+   public int GetRight(){
+       return this.Right;
+   }
+   
+   public int GetBottom(){
+       return this.Bottom;
+   }
+   
 }
 
 // Defines an interface for wrapped methods.

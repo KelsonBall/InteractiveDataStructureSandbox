@@ -23,7 +23,7 @@ void draw(){
         pHeight = height;
     }
     
-    App.Draw();
+    App.Display();
 }
 
 
