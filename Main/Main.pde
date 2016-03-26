@@ -42,22 +42,29 @@ Element elementUnderPoint(int x, int y){
 }
 
 void mousePressed()
-{
-   
-   //topClickedItem.Invoke();  
+{    
+    App.ClickMillis = millis();
 }
 
 void mouseMoved()
 {
-    //if there is an item being dragged
-        //draw();
+    Element newElementUnderMouse = elementUnderPoint(mouseX, mouseY);    
+    if (App.ElementUnderMouse != newElementUnderMouse){
+        if (App.ELementUnderMouse) != null){
+            App.ElementUnderMouse.MouseLeaveEvent.Invoke(App.ElementUnderMouse);
+            App.ElementUnderMouse = newElementUnderMouse;
+            App.ElementUnderMouse.MouseEnterEvent.Invoke(App.ElementUnderMouse);
+        }
+    }
 }
 
 void mouseReleased()
 {
-    //if there is an item being dragged
-        //end drag
-    //draw();
+    if (App.ElementUnderMouse != null){
+        if (App.ClickMillis - millis() < 200){
+          App.ElementUnderMouse.ClickEvent.Invoke(App.ElementUnderMouse);
+        }
+    }
 }
 
 void keyPressed()

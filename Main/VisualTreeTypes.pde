@@ -59,11 +59,7 @@ interface IDraggable{
 interface IClickable{
     // Returns -1 if click not in bounds, otherwise returns ZIndex of element.
     // This allows sorting by ZIndex
-    public int HitTest(int mousePosX, int mousePosY);
-    public void InvokeClickTrigger();
-  
-    public void SetClickTrigger(IAction<Element> trigger);
-    public IAction<Element> GetClickTrigger();
+    public int HitTest(int mousePosX, int mousePosY);    
 }
 
 public class UIDimensions{   
@@ -130,13 +126,7 @@ public interface IAction<SenderType>{
     public void Invoke(SenderType sender); 
 }
 
-public class ActionAdapater implements IAction<Element>
-{
-    @Override
-    public void Invoke(Element sender)
-    {        
-    }
-}
+
 
 public static class Styles{
     public enum Templates {

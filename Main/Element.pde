@@ -4,8 +4,7 @@ public static class Elements{
 
 // Basic type that encapuslates all items in the visual tree.
 // Defines default behaviors and properties.
-public abstract class Element implements IDrawable, IClickable{
-    private IAction<Element> _clickTrigger;
+public abstract class Element implements IDrawable, IClickable{    
     private UIDimensions _size, _absoluteSize, _position, _absolutePosition;
     private Vector4 _margin;
     private UUID _translationId;
@@ -13,6 +12,9 @@ public abstract class Element implements IDrawable, IClickable{
     protected Element parent;
 
     public StyleTemplate Style; 
+    public ActionAdapter ClickEvent = new ActionAdapter();
+    public ActionAdapter MouseEnterEvent = new ActionAdapter();
+    public ActionAdapter MouseLeaveEvent = new ActionAdapter();
 
     public Element(){
         this._absoluteSize = new UIDimensions(0, 0, 0, 0); 
@@ -129,7 +131,10 @@ public abstract class Element implements IDrawable, IClickable{
         List<Element> elements = new ArrayList<Element>();
         elements.add(this);
         if (this instanceof IWrapper){
-            elements.addAll(((IWrapper)this).GetChild().AllElements());
+            Element child = ((IWrapper)this).GetChild();
+            if (child != null){
+                elements.addAll(child.AllElements()); //<>//
+            }
         }
         else if (this instanceof IContainer){
             for (Element child : ((IContainer)this).GetChildren()){      
@@ -188,24 +193,7 @@ public abstract class Element implements IDrawable, IClickable{
             depth++;
         }
         return depth;
-    }
-    
-    @Override
-    public final void InvokeClickTrigger(){
-        if (this._clickTrigger != null){
-            this._clickTrigger.Invoke(this);
-        }
-    }
-  
-    @Override
-    public final void SetClickTrigger(IAction<Element> trigger){
-        this._clickTrigger = trigger;
-    }
-
-    @Override
-    public final IAction<Element> GetClickTrigger(){
-        return this._clickTrigger;
-    }
+    }            
     
     @Override
     public void Display(){
