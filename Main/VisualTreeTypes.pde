@@ -245,5 +245,174 @@ public class StyleTemplate{
             throw new IllegalStateException("Attempted to pop a style that was not at the top of the stack.");
         }
         
-    }    
+    }  
+    public int getEllipseMode(){
+      return this.EllipseMode;
+    }
+    
+    public void setEllipseMode(int height, int width){
+      //what exactly am i setting?
+       Push();
+    }
+    
+    public void setEllipseModeNULL(int EllipseMode){
+     this.EllipseMode = EllipseMode;
+       //setEllipseMode(null, null); says type mismatch of null and int?
+    }
+    public int getRectMode(){
+      return this.RectMode;
+    }
+    
+    public void setRectMode(int height, int width, int xOffSet, int yOffSet){
+      //what exactly am i setting?
+       Push();
+    }
+    
+    public void setRectModeNULL(int RectMode){
+     this.RectMode = RectMode;
+       //setRectMode(null, null); says type mismatch of null and int?
+    }
+    public int getShapeMode(){
+      return this.ShapeMode;
+    }
+    
+    public void setShapeMode(int NotSureOfParameters){
+      //what exactly am i setting?
+       Push();
+    }
+    
+    public void setShapeModeNULL(int ShapeMode){
+     this.ShapeMode = ShapeMode;
+       //setShapeMode(null, null); says type mismatch of null and int?
+    }
+    
+    public int getTextureMode(){
+      return this.TextureMode;
+    }
+    
+    public void setTextureMode(int NotSureOfParameters){
+      //what exactly am i setting?
+       Push();
+    }
+    
+    public void setTextureModeNULL(int TextureMode){
+     this.TextureMode = TextureMode;
+       //setTextureMode(null, null); says type mismatch of null and int?
+    }
+    
+    public int getColorMode(){
+      return this.ColorMode;
+    }
+    
+    public void setColorMode(int R, int G, int B){
+      //sets the RGB values to ones specified?
+       Push();
+    }
+    
+    public void setColorModeNULL(int ColorMode){
+     this.ColorMode = ColorMode;
+       //setColorMode(null, null); says type mismatch of null and int?
+    }
+    
+    public int getColorModeMaxR(){
+      return this.ColorModeMaxR;
+    }
+    
+    public void setColorModeMaxR(int MaxRed){
+        MaxRed = 255;
+          Push();
+      
+    }
+    
+    public void setColorModeMaxRNULL(int MaxR){
+     this.ColorModeMaxR = MaxR;
+     //MaxR = null; type mismatch
+    }
+    
+    public int getColorModeMaxGMode(){
+      return this.ColorModeMaxG;
+    }
+    
+    public void setColorModeMaxG(int MaxGreen){
+      MaxGreen = 255;
+       Push();
+    }
+    
+    public void setColorModeMaxGNULL(int MaxG){
+     this.ColorModeMaxG = MaxG;
+     //MaxG = null; type mismatch
+    }
+    
+    public int getColorModeMaxA(){
+      return this.ColorModeMaxR;
+    }
+    
+    public void setColorModeMaxA(int MaxA){
+      MaxA = 255;
+       Push();
+    }
+    
+    public void setColorModeMaxANULL(int MaxA){
+     this.ColorModeMaxA = MaxA;
+     //MaxA = null; type mismatch
+    }
+    
+    public int getColorModeMaxB(){
+      return this.ColorModeMaxR;
+    }
+    
+    public void setColorModeMaxB(int MaxB){
+      MaxB = 255;
+       Push();
+    }
+    
+    public void setColorModeMaxBNULL(int MaxB){
+     this.ColorModeMaxB = MaxB;
+     //MaxR = null; type mismatch
+    }
+    
+    public color getFill(){
+     return this.Fill;
+    }
+    
+    public void setFill(color Fill){
+      this.Fill = Fill;
+        Push();
+      //is there a way to get input from this user? or do I need to make cases for every color?
+    }
+    
+    public int noFill(){
+     //this.Fill = null; how do i set to null w/o type mismatch
+       return this.Fill;
+    }
+    
+    public color getStroke(){
+     return this.Fill;
+    }
+    
+    public void setStroke(color Stroke){
+      this.Stroke = Stroke;
+        Push();
+      //is there a way to get input from this user? or do I need to make cases for every color?
+    }
+    
+    public int noStroke(){
+     //this.Stroke = null; how do i set to null w/o type mismatch
+     return this.Stroke;
+    }
+    
+    public color getTint(){
+     return this.Tint;
+    }
+    
+    public void setTint(color Tint){
+      this.Fill = Tint;
+        Push();
+      //is there a way to get input from this user? or do I need to make cases for every color?
+    }
+    
+    public int noTint(){
+     //this.Tint = null; how do i set to null w/o type mismatch
+     return this.Tint;
+    }
 }
